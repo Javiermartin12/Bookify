@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "This is the backend for an app to recommended book",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Javiermartin12/Bookify.git"
+  },
+  "keywords": [
+    "(backend",
+    "node)"
+  ],
+  "author": "Javier Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Javiermartin12/Bookify/issues"
+  },
+  "homepage": "https://github.com/Javiermartin12/Bookify#readme"
+}
