@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/Javiermartin12/Bookify/issues"
   },
-  "homepage": "https://github.com/Javiermartin12/Bookify#readme"
+  "homepage": "https://github.com/Javiermartin12/Bookify#readme",
+  "dependencies": {
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
 }
