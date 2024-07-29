@@ -1,9 +1,22 @@
-.continerMain {
-  height: 82%;
-  width: 82%;
-  background: rgba(229, 229, 229, 0.5); /* BG black transparent */
-  backdrop-filter: blur(10px);
-  border-radius: 0.5rem;
+.background {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-image: url("../assets/BG.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.continerMain {
+  position: absolute;
+  height: 90%;
+  width: 90%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
