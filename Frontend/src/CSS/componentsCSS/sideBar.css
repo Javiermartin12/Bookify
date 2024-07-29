@@ -1,0 +1,16 @@
+.sideBar {
+  height: 95.5%;
+  width: 15%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+.sideBarTitle {
+  color: aliceblue;
+}
+.sideBarSubTitle {
+  color: aliceblue;
+}
