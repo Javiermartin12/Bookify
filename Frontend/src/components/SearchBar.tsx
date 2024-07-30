@@ -1,5 +1,6 @@
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { searchBarStyle } from "../theme/materialUI/searchBar";
 
 const SearchBar = () => {
   return (
@@ -7,25 +8,13 @@ const SearchBar = () => {
       <TextField
         variant="outlined"
         placeholder="Search book for you..."
-        sx={{
-          cursor: "pointer",
-          borderRadius: "0.5rem",
-          margin: "1rem",
-          height: "35%",
-          width: "40%",
-        }}
+        sx={searchBarStyle}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon sx={{ color: "aliceblue" }} />
             </InputAdornment>
           ),
-          sx: {
-            "& input::placeholder": {
-              color: "aliceblue",
-              opacity: 1,
-            },
-          },
         }}
       />
     </div>
