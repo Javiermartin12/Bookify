@@ -14,6 +14,7 @@ const Header: React.FC = () => {
           sx={{
             background: "rgba(0, 0, 0, 0.2)",
             borderRadius: "0.5rem",
+            overflow: "hidden",
             marginTop: "0.5rem",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
