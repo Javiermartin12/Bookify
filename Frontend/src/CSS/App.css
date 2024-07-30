@@ -24,3 +24,19 @@
   display: flex;
   flex-direction: row;
 }
+@media (max-width: 430px) {
+  .continerMain {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 960px) {
+  .containerMain {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
