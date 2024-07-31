@@ -16,11 +16,28 @@
   width: 90%;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   padding: 0.08rem;
   display: flex;
   flex-direction: row;
+}
+@media (max-width: 430px) {
+  .continerMain {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
+}
+
+@media (min-width: 960px) {
+  .containerMain {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }

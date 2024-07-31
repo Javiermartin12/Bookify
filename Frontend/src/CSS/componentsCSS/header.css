@@ -1,20 +1,31 @@
 .headerMain {
   width: 100%;
-  height: 14%;
+  height: 9rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
 }
 .headerContainer {
-  height: 14%;
-  width: 100%;
+  height: 100%;
+  width: 85%;
   padding: 1rem;
   border-radius: 0.5rem;
   overflow: hidden;
 }
+
 .headerTitle {
   color: aliceblue;
   font-size: xx-large;
-  margin: 1.4rem 0 0.3rem 0;
+  margin: 1.4rem 0 0.7rem 0;
 }
 .booksExist {
   color: aliceblue;
-  padding-bottom: 1rem;
+  padding-top: 0.3rem;
+}
+.headerContainerRight {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
