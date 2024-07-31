@@ -26,3 +26,25 @@ export const theme = createTheme({
     },
   },
 });
+
+export const searchBarContainerStyles: SxProps<Theme> = {
+  "@media (max-width:430px)": {
+    display: "none",
+  },
+};
+export const searchBarStyles: SxProps<Theme> = {
+  cursor: "pointer",
+  borderRadius: "0.5rem",
+  margin: "1rem",
+  height: "35%",
+  width: {
+    xs: "80%",
+    sm: "60%",
+    md: "50%",
+    lg: "40%",
+  },
+  "& input::placeholder": {
+    color: "aliceblue",
+    opacity: 1,
+  },
+};
