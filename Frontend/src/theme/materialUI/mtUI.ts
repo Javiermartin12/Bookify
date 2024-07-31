@@ -26,6 +26,46 @@ export const theme = createTheme({
     },
   },
 });
+export const headerButtonStylesMobile: SxProps<Theme> = {
+  "@media (max-width:430px)": {
+    display: "none",
+  },
+};
+export const headerButtonStylesDesktop: SxProps<Theme> = {
+  background: "rgba(0, 0, 0, 0.2)",
+  borderRadius: "0.5rem",
+  overflow: "hidden",
+  marginTop: "0.5rem",
+  backdropFilter: "blur(10px)",
+  WebkitBackdropFilter: "blur(10px)",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+  height: "40%",
+  width: "60%",
+  "&:hover": {
+    background: "rgba(0, 0, 0, 0.3)",
+  },
+};
+export const headerButtonStyles: SxProps<Theme> = {
+  ...headerButtonStylesMobile,
+  "@media (min-width:430px)": headerButtonStylesDesktop,
+};
+export const filterListIcon: SxProps<Theme> = {
+  "@media (min-width:430px)": {
+    display: "none",
+  },
+  "@media (max-width:430px)": {
+    background: "rgba(0, 0, 0, 0.2)",
+    borderRadius: "50%",
+    padding: "0.5rem",
+    overflow: "hidden",
+    "&:hover": {
+      background: "rgba(0, 0, 0, 0.3)",
+    },
+    "&:active": {
+      background: "rgba(255, 255, 255, 0.3)",
+    },
+  },
+};
 
 export const searchBarContainerStyles: SxProps<Theme> = {
   "@media (max-width:430px)": {
