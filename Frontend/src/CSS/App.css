@@ -26,12 +26,13 @@
 }
 @media (max-width: 430px) {
   .continerMain {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    width: 100%;
   }
 }
+
 @media (min-width: 960px) {
   .containerMain {
     width: 100%;
