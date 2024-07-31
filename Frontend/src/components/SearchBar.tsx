@@ -1,22 +1,28 @@
-import { TextField, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { sideBarContainerStyles } from "../theme/materialUI/mtUI";
+
+import {
+  searchBarContainerStyles,
+  searchBarStyles,
+} from "../theme/materialUI/mtUI";
 
 const SearchBar = () => {
   return (
     <div>
-      <TextField
-        variant="outlined"
-        placeholder="Search book for you..."
-        sx={sideBarContainerStyles}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon sx={{ color: "aliceblue" }} />
-            </InputAdornment>
-          ),
-        }}
-      />
+      <Box sx={searchBarContainerStyles}>
+        <TextField
+          variant="outlined"
+          placeholder="Search book for you..."
+          sx={searchBarStyles}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon sx={{ color: "aliceblue" }} />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
     </div>
   );
 };
