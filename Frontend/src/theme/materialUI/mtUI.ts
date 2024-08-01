@@ -21,6 +21,17 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: 30,
+          color: "aliceblue",
+          cursor: "pointer",
+          "&:hover": {
+            color: "lightgray",
+            transform: "scale(1.1)",
+            boxShadow: "0 4px 8px rgba(255, 255, 255, 0.2)",
+          },
+          "&:active": {
+            color: "gray",
+            transform: "scale(0.9)",
+          },
         },
       },
     },
