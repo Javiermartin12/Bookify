@@ -1,7 +1,7 @@
 import "./CSS/App.css";
 import React from "react";
 import SideBar from "./components/SideBar.tsx";
-import RightContainer from "./components/RightContainer.tsx";
+
 import { Route } from "wouter";
 import { Home } from "./pages/Home.tsx";
 import { MyBooks } from "./pages/MyBooks.tsx";
@@ -18,7 +18,6 @@ const App: React.FC = () => {
           <Route path="/mybooks" component={MyBooks} />
           <Route path="/createbook" component={CreateBooks} />
           <Route path="/chat" component={Chat} />
-          <RightContainer />
         </div>
       </div>
     </>
