@@ -8,6 +8,6 @@ import {
 
 export const userRoutes = Router();
 userRoutes.get("/", getAllUser);
-userRoutes.get("/", createUser);
-userRoutes.get("/", updateUser);
-userRoutes.get("/", deleteUser);
+userRoutes.post("/", createUser);
+userRoutes.patch("/:userId", updateUser);
+userRoutes.delete("/:userId", deleteUser);

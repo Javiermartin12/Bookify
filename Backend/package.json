@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "backend-bookify",
   "version": "1.0.0",
   "description": "This is the backend for an app to recommended book",
   "main": "index.ts",
