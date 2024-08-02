@@ -10,9 +10,9 @@ export const getAllUser = async (req: Request, res: Response) => {
   }
 };
 export const createUser = async (req: Request, res: Response) => {
-  const { id, name, gmail, password } = req.body;
+  const { name, gmail, password } = req.body;
   try {
-    const newUser = await UserModel.create({ id, name, gmail, password });
+    const newUser = await UserModel.create({ name, gmail, password });
     res.status(200).send(newUser);
   } catch (error) {
     res.status(400).send(error);
