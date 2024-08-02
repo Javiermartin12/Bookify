@@ -1,14 +1,8 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import config from "../config/config";
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+const connect = () => mongoose.connect(config.db.URI);
 
-mongoose
-  .connect(MONGODB_URI)
-  .then(() => {
-    console.log("Conectado a MongoDB");
-  })
-  .catch((err) => {
-    console.error("Error al conectar a MongoDB", err);
-  });
+export default connect;
