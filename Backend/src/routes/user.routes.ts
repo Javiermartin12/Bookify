@@ -9,5 +9,5 @@ import {
 export const userRoutes = Router();
 userRoutes.get("/", getAllUser);
 userRoutes.post("/", createUser);
-userRoutes.patch("/", updateUser);
-userRoutes.delete("/", deleteUser);
+userRoutes.patch("/:userId", updateUser);
+userRoutes.delete("/:userId", deleteUser);
