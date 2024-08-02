@@ -2,7 +2,12 @@ import { Request, Response } from "express";
 import { UserModel } from "../models/users.models";
 
 export const getAllUser = async (req: Request, res: Response) => {
-  res.send;
+  try {
+    const allUser = await UserModel.find();
+    res.status(200).send(allUser);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
 export const createUser = async (req: Request, res: Response) => {
   const { id, name, gmail, password } = req.body;
@@ -14,8 +19,25 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 export const updateUser = async (req: Request, res: Response) => {
-  res.send;
+  const { name, gmail, password } = req.body;
+  const { userId } = req.params;
+  try {
+    const updateUser = await UserModel.findByIdAndUpdate(
+      { _id: userId },
+      { name, gmail, password },
+      { new: true }
+    );
+    res.status(200).send(updateUser);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
 export const deleteUser = async (req: Request, res: Response) => {
-  res.send;
+  const { userId } = req.params;
+  try {
+    const userDelete = await UserModel.findOneAndDelete({ _id: userId });
+    res.status(200).send(userDelete);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
