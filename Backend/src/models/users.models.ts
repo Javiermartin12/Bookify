@@ -7,8 +7,6 @@ const userSchema = new Schema<IUserSchema>(
     name: { type: String, required: true, unique: true },
     gmail: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    createAt: { type: Date, default: Date.now },
-    updateAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );

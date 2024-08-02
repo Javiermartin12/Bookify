@@ -3,6 +3,4 @@ export interface IUserSchema {
   name: string;
   gmail: string;
   password: string;
-  createAt: Date;
-  updateAt: Date;
 }
