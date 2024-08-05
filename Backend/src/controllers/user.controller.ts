@@ -22,12 +22,12 @@ export const updateUser = async (req: Request, res: Response) => {
   const { name, gmail, password } = req.body;
   const { userId } = req.params;
   try {
-    const updateUser = await UserModel.findByIdAndUpdate(
+    const updatedUser = await UserModel.findByIdAndUpdate(
       { _id: userId },
       { name, gmail, password },
       { new: true }
     );
-    res.status(200).send(updateUser);
+    res.status(200).send(updatedUser);
   } catch (error) {
     res.status(400).send(error);
   }
