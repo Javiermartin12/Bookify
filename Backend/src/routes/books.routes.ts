@@ -9,6 +9,6 @@ import {
 export const booksRoutes = Router();
 
 booksRoutes.get("/", getAllBooks);
-booksRoutes.post("/:userId", createBooks);
+booksRoutes.post("/", createBooks);
 booksRoutes.patch("/:userId", updateBooks);
 booksRoutes.delete("/:userId", deleteBooks);

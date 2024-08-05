@@ -10,7 +10,7 @@ const bookSchema = new Schema<IBooksSchema>(
     summary: { type: String },
     coverImageUrl: { type: String },
     synopsis: { type: String },
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    idUser: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   { timestamps: true }
 );
