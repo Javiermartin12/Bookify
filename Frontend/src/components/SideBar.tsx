@@ -4,7 +4,7 @@ import { Home, Message, Search, Add, Book } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import { sideBarContainerStyles } from "../theme/materialUI/mtUI";
 import { Link } from "wouter";
-
+import LogoutButton from "./subComponents/LogoutButton";
 const SideBar: React.FC = () => {
   return (
     <div className="sideBar">
@@ -25,6 +25,7 @@ const SideBar: React.FC = () => {
       </Box>
       <h1 className="sideBarTitle">Home</h1>
       <p className="sideBarSubTitle">All books</p>
+      <LogoutButton />
     </div>
   );
 };
