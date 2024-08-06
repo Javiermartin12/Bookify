@@ -14,7 +14,7 @@ const App: React.FC = () => {
       <div className="background">
         <div className="continerMain">
           <SideBar />
-          <Route path="/" component={Home} />
+          <Route path="/home" component={Home} />
           <Route path="/mybooks" component={MyBooks} />
           <Route path="/createbook" component={CreateBooks} />
           <Route path="/chat" component={Chat} />
