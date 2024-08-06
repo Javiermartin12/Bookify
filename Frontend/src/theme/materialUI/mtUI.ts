@@ -27,6 +27,7 @@ export const theme = createTheme({
             color: "lightgray",
             transform: "scale(1.1)",
             boxShadow: "0 4px 8px rgba(255, 255, 255, 0.2)",
+            borderRadius: "1rem",
           },
           "&:active": {
             color: "gray",
