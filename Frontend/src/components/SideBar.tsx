@@ -9,7 +9,7 @@ const SideBar: React.FC = () => {
   return (
     <div className="sideBar">
       <Box sx={sideBarContainerStyles}>
-        <Link href="/">
+        <Link href="/home">
           <Home />
         </Link>
         <Link href="/mybooks">
