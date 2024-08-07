@@ -33,10 +33,23 @@ export const createBook = async (booksData: BookInterface) => {
     throw error;
   }
 };
-export const updateBook = async(id: string, booksData: BookInterface) => {
-    try {
-        const response = await 
-    } catch (error) {
-        
-    }
-}
+export const updateBook = async (id: string, booksData: BookInterface) => {
+  try {
+    const response = await axiosInstance.patch(`/books/${id}`, booksData);
+    return response.data;
+    console.log(response);
+  } catch (error) {
+    console.log("Book don`t  updated", error);
+    throw error;
+  }
+};
+export const deleteBook = async (id: string) => {
+  try {
+    const response = await axiosInstance.delete(`/books/${id}`);
+    return response.data;
+    console.log(response);
+  } catch (error) {
+    console.log("Book don`t book deleted", error);
+    throw error;
+  }
+};
