@@ -15,20 +15,20 @@ const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Auth0Provider
-        domain={domain}
-        clientId={clientId}
-        authorizationParams={{
-          redirect_uri: `${window.location.origin}/home`,
-          audience: audience,
-        }}
-      >
-        <CookiesProvider>
-          <AuthProvider>
+      <AuthProvider>
+        <Auth0Provider
+          domain={domain}
+          clientId={clientId}
+          authorizationParams={{
+            redirect_uri: `${window.location.origin}/home`,
+            audience: audience,
+          }}
+        >
+          <CookiesProvider>
             <App />
-          </AuthProvider>
-        </CookiesProvider>
-      </Auth0Provider>
+          </CookiesProvider>
+        </Auth0Provider>
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
