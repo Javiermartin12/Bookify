@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosInstance from "../axios.config";
 import { UserInterface } from "../interfaces/userInterface";
 
@@ -23,7 +24,24 @@ export const getBooksById = async (id: string) => {
   }
 };
 
-export const updateUser = async (userData: UserInterface) => {
+export const updateUser = async (id: string, userData: UserInterface) => {
   try {
-  } catch (error) {}
+    const response = await axiosInstance.patch(`/user/${id}`, userData);
+    return response.data;
+    console.log(response);
+  } catch (error) {
+    console.log("User don`t updated", error);
+    throw error;
+  }
+};
+
+export const deleteUser = async (id: string) => {
+  try {
+    const response = await axios.delete(`/user/${id}`);
+    return response.data;
+    console.log(response);
+  } catch (error) {
+    console.log("User don`t deleted", error);
+    throw error;
+  }
 };
