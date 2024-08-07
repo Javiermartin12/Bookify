@@ -23,7 +23,7 @@ const Header: React.FC = () => {
         <Box sx={boxToRow}>
           <Box sx={boxToAvatar}></Box>
           {isAuthenticated && (
-            <Typography sx={helloAvatarName}>Hello,{user?.name}</Typography>
+            <Typography sx={helloAvatarName}>Hello, {user?.name}</Typography>
           )}
         </Box>
         <h2 className="headerTitle">Books</h2>
