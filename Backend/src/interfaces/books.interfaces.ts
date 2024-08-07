@@ -6,5 +6,5 @@ export interface IBooksSchema extends Document {
   summary?: string;
   coverImageUrl?: string;
   synopsis?: string;
-  idUser?: string;
+  nameUser?: string;
 }

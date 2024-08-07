@@ -6,12 +6,17 @@ type TConfig = {
 type EnviromentConfig = {
   app: AppConfig;
   db: DbConfig;
+  auth: AuthConfig;
 };
 type AppConfig = {
   PORT: string | number;
 };
 type DbConfig = {
   URI: string;
+};
+type AuthConfig = {
+  audience: string;
+  issuer: string;
 };
 
 if (process.env.NODE_ENV === "production") {
@@ -29,6 +34,10 @@ const CONFIG: TConfig = {
     db: {
       URI: process.env.MONGODB_URI || "mongodb://localhost:27017",
     },
+    auth: {
+      audience: process.env.AUTH0_AUDIENCE || "null",
+      issuer: process.env.AUTH0_ISSUER || "null",
+    },
   },
   production: {
     app: {
@@ -36,6 +45,10 @@ const CONFIG: TConfig = {
     },
     db: {
       URI: process.env.MONGODB_URI || "mongodb://localhost:27017",
+    },
+    auth: {
+      audience: process.env.AUTH0_AUDIENCE || "null",
+      issuer: process.env.AUTH0_ISSUER || "null",
     },
   },
 };
