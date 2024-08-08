@@ -7,6 +7,7 @@ import { MyBooks } from "./pages/MyBooks.tsx";
 import { CreateBooks } from "./pages/CreateBooks.tsx";
 import { Chat } from "./pages/Chat.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import { NewBook } from "./pages/NewBook.tsx";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
           <Route path="/mybooks" component={MyBooks} />
           <Route path="/createbook" component={CreateBooks} />
           <Route path="/chat" component={Chat} />
+          <Route path="/new-book" component={NewBook} />
         </div>
       </div>
     </>
