@@ -9,10 +9,11 @@ import {
   helloAvatarName,
 } from "../theme/materialUI/header";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useLocation } from "wouter";
 
 const Header: React.FC = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-
+  const [, navigate] = useLocation();
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -31,7 +32,11 @@ const Header: React.FC = () => {
       </div>
       <div className="headerContainerRight">
         <FilterListIcon sx={filterListIcon} />
-        <Button variant="contained" sx={headerButtonStyles}>
+        <Button
+          variant="contained"
+          sx={headerButtonStyles}
+          onClick={() => navigate("/new-book")}
+        >
           New book
         </Button>
       </div>
