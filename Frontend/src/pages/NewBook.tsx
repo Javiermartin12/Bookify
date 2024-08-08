@@ -89,7 +89,7 @@ export const NewBook: React.FC = () => {
           </Box>
           <Box mb={2}>
             <TextField
-              type="file"
+              label="Url image"
               value={coverImageUrl}
               onChange={(e) => setCoverImageUrl(e.target.value)}
               fullWidth
