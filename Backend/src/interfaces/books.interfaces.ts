@@ -3,7 +3,6 @@ export interface IBooksSchema extends Document {
   author: string;
   genre: string;
   publishedDate: Date;
-  summary?: string;
   coverImageUrl?: string;
   synopsis?: string;
   nameUser?: string;
