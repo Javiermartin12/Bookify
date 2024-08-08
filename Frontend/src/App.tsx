@@ -1,5 +1,6 @@
 import "./CSS/App.css";
 import React from "react";
+import { PrivateRoute } from "./pages/routes/PrivateRoutes.tsx";
 
 import { Route } from "wouter";
 import { Home } from "./pages/Home.tsx";
@@ -16,9 +17,9 @@ const App: React.FC = () => {
         <div className="continerMain">
           <Route path="/" component={LoginPage} />
           <Route path="/home" component={Home} />
-          <Route path="/mybooks" component={MyBooks} />
+          <PrivateRoute path="/mybooks" component={MyBooks} />
           <Route path="/createbook" component={CreateBooks} />
-          <Route path="/chat" component={Chat} />
+          <PrivateRoute path="/chat" component={Chat} />
           <Route path="/new-book" component={NewBook} />
         </div>
       </div>
