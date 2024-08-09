@@ -1,5 +1,6 @@
 export interface IUserSchema {
   name: string;
-  gmail: string;
+  email: string;
   password: string;
+  sub: string;
 }
