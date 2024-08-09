@@ -9,15 +9,25 @@ export const getAllUser = async (req: Request, res: Response) => {
     res.status(400).send(error);
   }
 };
+
 export const createUser = async (req: Request, res: Response) => {
-  const { name, gmail, password } = req.body;
   try {
-    const newUser = await UserModel.create({ name, gmail, password });
-    res.status(200).send(newUser);
+    const { user } = req;
+    if (!user || !user.sub) {
+      return res.status(400).send("Invalid token payload");
+    }
+    const sub = user.sub;
+    let existingUser = await UserModel.findOne({ sub });
+    if (!existingUser) {
+      const { name, email } = req.body;
+      existingUser = await UserModel.create({ name, email, sub });
+    }
+    res.status(200).send(existingUser);
   } catch (error) {
     res.status(400).send(error);
   }
 };
+
 export const updateUser = async (req: Request, res: Response) => {
   const { name, gmail, password } = req.body;
   const { userId } = req.params;
