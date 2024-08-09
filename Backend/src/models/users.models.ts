@@ -4,8 +4,9 @@ import { IUserSchema } from "../interfaces/users.interfaces";
 const userSchema = new Schema<IUserSchema>(
   {
     name: { type: String, required: true, unique: true },
-    gmail: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    sub: { type: String, required: true, unique: true },
   },
   { timestamps: true }
 );
