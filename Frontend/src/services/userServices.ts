@@ -13,7 +13,7 @@ export const getUser = async () => {
   }
 };
 
-export const getBooksById = async (id: string) => {
+export const getUserById = async (id: string) => {
   try {
     const response = await axiosInstance.get(`/user/${id}`);
     return response.data;
