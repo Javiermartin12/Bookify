@@ -48,7 +48,7 @@ export const ContainerBooks: React.FC = () => {
                     Author: {book.author}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Published Date: {book.genre}
+                    Genre: {book.genre}
                   </Typography>
                 </CardContent>
               </Card>
