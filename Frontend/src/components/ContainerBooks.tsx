@@ -21,7 +21,6 @@ export const ContainerBooks: React.FC = () => {
       try {
         const response = await getBooks();
         setBooks(response);
-        console.log(response);
       } catch (error) {
         setError("Failed to fetch books. Please try again.");
       } finally {
