@@ -14,7 +14,6 @@ export const Home: React.FC = () => {
       if (isAuthenticated && user) {
         try {
           const token = await getAccessTokenSilently();
-          console.log("Token obtenido:", token);
           const response = await axiosInstance.post(
             "/api/user/register",
             {
@@ -28,7 +27,7 @@ export const Home: React.FC = () => {
               },
             }
           );
-          console.log("Success singup:", response.data);
+          return response.data;
         } catch (error) {
           console.error("Error singup:", error);
         }
