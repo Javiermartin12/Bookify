@@ -21,15 +21,12 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const registerUserWithAuth0 = async (req: Request, res: Response) => {
   const { email, name, auth0Id } = req.body;
-  console.log({ email, name, auth0Id });
   try {
     let user = await UserModel.findOne({ auth0Id });
-    console.log(user);
     if (!user) {
       user = new UserModel({ email, name, auth0Id });
       await user.save();
     }
-    console.log(user);
     res.status(201).json({ message: "User registered succesfully", user });
   } catch (error) {
     console.error("Error en el backend:", error);
