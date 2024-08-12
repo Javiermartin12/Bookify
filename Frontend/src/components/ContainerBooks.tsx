@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { boxContainerBooks } from "../theme/materialUI/containerBooks.ts";
+import { boxContainerBooks, card } from "../theme/materialUI/containerBooks.ts";
 import { BookInterface } from "../interfaces/booksInterfaces.ts";
 import { getBooks } from "../services/bookServices.ts";
 
@@ -38,9 +38,12 @@ export const ContainerBooks: React.FC = () => {
       <Box sx={boxContainerBooks}>
         <Grid container spacing={3}>
           {books.map((book) => (
-            <Grid item xs={12} sm={6} md={4} key={book.title}>
-              <Card>
+            <Grid item xs={12} sm={6} md={3} key={book.title}>
+              <Card sx={card}>
                 <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    Image: {book.coverImageUrl}
+                  </Typography>
                   <Typography variant="h5" component="div">
                     {book.title}
                   </Typography>
@@ -48,7 +51,16 @@ export const ContainerBooks: React.FC = () => {
                     Author: {book.author}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
+                    Published Date: {book.publishedDate}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
                     Genre: {book.genre}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Synopsis: {book.synopsis}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    By: {book.nameUser}
                   </Typography>
                 </CardContent>
               </Card>
