@@ -17,7 +17,7 @@ export const NewBook: React.FC = () => {
   const [publishedDate, setPublishedDate] = useState<string>("");
   const [coverImageUrl, setCoverImageUrl] = useState("");
   const [synopsis, setSynopsis] = useState("");
-  const [byUser, setByUser] = useState("");
+  const [nameUser, setNameUser] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,7 +30,7 @@ export const NewBook: React.FC = () => {
         publishedDate: new Date(publishedDate),
         coverImageUrl,
         synopsis,
-        byUser,
+        nameUser,
       });
       return response.data;
       console.log(response);
@@ -84,7 +84,6 @@ export const NewBook: React.FC = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              required
             />
           </Box>
           <Box mb={2}>
@@ -93,7 +92,6 @@ export const NewBook: React.FC = () => {
               value={coverImageUrl}
               onChange={(e) => setCoverImageUrl(e.target.value)}
               fullWidth
-              required
             />
           </Box>
           <Box mb={2}>
@@ -104,16 +102,14 @@ export const NewBook: React.FC = () => {
               fullWidth
               multiline
               rows={4}
-              required
             />
           </Box>
           <Box mb={2}>
             <TextField
               label="Created By"
-              value={byUser}
-              onChange={(e) => setByUser(e.target.value)}
+              value={nameUser}
+              onChange={(e) => setNameUser(e.target.value)}
               fullWidth
-              required
             />
           </Box>
           {error && (

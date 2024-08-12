@@ -5,5 +5,5 @@ export interface BookInterface {
   publishedDate: Date;
   coverImageUrl: string;
   synopsis: string;
-  byUser: string;
+  nameUser: string;
 }
