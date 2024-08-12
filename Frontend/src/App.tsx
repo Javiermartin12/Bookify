@@ -1,7 +1,6 @@
 import "./CSS/App.css";
 import React from "react";
-import { PrivateRoute } from "./pages/routes/PrivateRoutes.tsx";
-
+import { PrivateRoute } from "./routes/PrivateRoutes.tsx";
 import { Route } from "wouter";
 import { Home } from "./pages/Home.tsx";
 import { MyBooks } from "./pages/MyBooks.tsx";
