@@ -1,5 +1,5 @@
 export interface UserInterface {
   name: string;
-  gmail: string;
-  password: string;
+  email: string;
+  sub: string;
 }
