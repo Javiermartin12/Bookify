@@ -1,27 +1,41 @@
-import React, { useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import RightContainer from "../components/RightContainer";
 import SideBar from "../components/SideBar";
-import { useAuth0 } from "@auth0/auth0-react";
+import { UserInterface } from "../interfaces/userInterface";
+import { useEffect } from "react";
 import axiosInstance from "../axios.config";
 
 export const Home: React.FC = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated, user, getAccessTokenSilently } =
+    useAuth0<UserInterface>();
 
   useEffect(() => {
-    const createOrFetchUser = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        await axiosInstance.post(
-          "/user",
-          {},
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-      } catch (error) {
-        console.error("Error creating/fetching user", error);
+    const registerUser = async () => {
+      if (isAuthenticated && user) {
+        try {
+          const token = await getAccessTokenSilently();
+          console.log("Token obtenido:", token);
+          const response = await axiosInstance.post(
+            "/api/user/register",
+            {
+              email: user.email,
+              name: user.name,
+              auth0Id: user.sub,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          console.log("Success singup:", response.data);
+        } catch (error) {
+          console.error("Error singup:", error);
+        }
       }
     };
-    createOrFetchUser();
-  }, [getAccessTokenSilently]);
+    registerUser();
+  }, [isAuthenticated, getAccessTokenSilently, user]);
   return (
     <>
       <SideBar />
