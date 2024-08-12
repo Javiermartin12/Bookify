@@ -7,7 +7,7 @@ export const sideBarContainerStyles: SxProps<Theme> = {
   justifyContent: "space-around",
   alignItems: "center",
   width: "100%",
-  gap: "1rem", // Agrega un espacio entre los iconos
+  gap: "1rem",
   "@media (max-width:430px)": {
     display: "flex",
   },
