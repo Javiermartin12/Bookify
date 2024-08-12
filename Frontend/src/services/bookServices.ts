@@ -25,7 +25,7 @@ export const getBooksById = async (id: string) => {
 
 export const createBook = async (booksData: BookInterface) => {
   try {
-    const response = await axiosInstance.post("/api/books", booksData);
+    const response = await axiosInstance.post("/api/books/register", booksData);
     return response.data;
     console.log(response);
   } catch (error) {
