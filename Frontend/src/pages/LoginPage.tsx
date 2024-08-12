@@ -1,8 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Button, Typography } from "@mui/material";
+import React from "react";
+import { UserInterface } from "../interfaces/userInterface";
 
-const LoginPage = () => {
-  const { loginWithRedirect } = useAuth0();
+const LoginPage: React.FC = () => {
+  const { loginWithRedirect } = useAuth0<UserInterface>();
 
   return (
     <>
@@ -10,7 +12,6 @@ const LoginPage = () => {
         <Typography variant="h1" color="aliceblue" gutterBottom>
           Bookify
         </Typography>
-
         <Box
           sx={{
             display: "flex",
@@ -38,5 +39,4 @@ const LoginPage = () => {
     </>
   );
 };
-
 export default LoginPage;
