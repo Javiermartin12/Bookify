@@ -66,10 +66,10 @@ export const singupBooksFromFront = async (req: Request, res: Response) => {
       userId,
     });
     console.log(newBook);
-    await newBook.save();
+    const savedBook = await newBook.save();
     res
       .status(200)
-      .json({ message: "Book created successfully", book: newBook });
+      .json({ message: "Book created successfully", book: savedBook });
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "Error creating book", error });
