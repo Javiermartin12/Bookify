@@ -5,7 +5,7 @@ import { Route } from "wouter";
 import { Home } from "./pages/Home.tsx";
 import { MyBooks } from "./pages/MyBooks.tsx";
 import { CreateBooks } from "./pages/CreateBooks.tsx";
-import { Chat } from "./pages/Chat.tsx";
+import { Settings } from "./pages/Settings.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import { NewBook } from "./pages/NewBook.tsx";
 
@@ -18,7 +18,7 @@ const App: React.FC = () => {
           <Route path="/home" component={Home} />
           <PrivateRoute path="/mybooks" component={MyBooks} />
           <Route path="/createbook" component={CreateBooks} />
-          <PrivateRoute path="/chat" component={Chat} />
+          <PrivateRoute path="/settings" component={Settings} />
           <Route path="/new-book" component={NewBook} />
         </div>
       </div>
