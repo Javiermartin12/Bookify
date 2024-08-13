@@ -20,7 +20,6 @@ export const NewBook: React.FC = () => {
   const [genre, setGenre] = useState("");
   const [publishedDate, setPublishedDate] = useState<string>("");
   const [coverImage, setCoverImage] = useState<File | null>(null);
-  const [coverImageUrl] = useState("");
   const [synopsis, setSynopsis] = useState("");
   const [nameUser, setNameUser] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +32,7 @@ export const NewBook: React.FC = () => {
     formData.append("upload_preset", UPLOAD_PRESET);
     try {
       const response = await axios.post(CLOUDINARY_URL, formData);
+      console.log("Image upload response:", response.data);
       return response.data.secure_url;
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -80,7 +80,7 @@ export const NewBook: React.FC = () => {
       <Typography variant="h4" color="aliceblue" component="h2" gutterBottom>
         Create New Book
       </Typography>
-      <Box sx={{ maxHeight: "70vh", overflowY: "auto", paddingRight: "1rem" }}>
+      <Box sx={{ maxHeight: "78vh", overflowY: "auto", paddingRight: "1rem" }}>
         <form onSubmit={handleSubmit}>
           <Box mb={2}>
             <TextField
@@ -124,8 +124,7 @@ export const NewBook: React.FC = () => {
           <Box mb={2}>
             <TextField
               type="file"
-              label="Cover image"
-              value={coverImageUrl}
+              inputProps={{ accept: "image/*" }}
               onChange={handleImageChange}
               fullWidth
             />
