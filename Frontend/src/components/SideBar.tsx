@@ -15,7 +15,7 @@ const SideBar: React.FC = () => {
         <Link href="/mybooks">
           <Book />
         </Link>
-        <Link href="/createbook">
+        <Link href="/new-book">
           <Add />
         </Link>
         <Search />
