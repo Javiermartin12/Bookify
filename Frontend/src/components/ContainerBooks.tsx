@@ -41,12 +41,12 @@ export const ContainerBooks: React.FC = () => {
             <CardContent>
               <CardMedia
                 component="img"
-                height="200"
+                height="210"
                 sx={{ objectFit: "cover" }}
                 image={book.coverImageUrl}
                 alt={book.title}
               />
-              <Typography variant="h5" component="div">
+              <Typography variant="h6" component="div">
                 {book.title}
               </Typography>
             </CardContent>
