@@ -18,8 +18,10 @@ export const boxContainerBooks: SxProps<Theme> = {
 export const card: SxProps<Theme> = {
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
-  cursor: "",
-  height: "100%",
-  width: "100%",
+  flexFlow: "row wrap",
+  margin: "0.5rem",
+  height: "auto",
+  width: "86%",
+
+  overflow: "hidden",
 };
