@@ -2,8 +2,8 @@ import {
   Box,
   Card,
   CardContent,
+  CardMedia,
   CircularProgress,
-  Grid,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -36,37 +36,22 @@ export const ContainerBooks: React.FC = () => {
   return (
     <>
       <Box sx={boxContainerBooks}>
-        <Grid container spacing={3}>
-          {books.map((book) => (
-            <Grid item xs={12} sm={6} md={3} key={book.title}>
-              <Card sx={card}>
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    Image: {book.coverImageUrl}
-                  </Typography>
-                  <Typography variant="h5" component="div">
-                    {book.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Author: {book.author}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Published Date: {book.publishedDate}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Genre: {book.genre}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Synopsis: {book.synopsis}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    By: {book.nameUser}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        {books.map((book) => (
+          <Card key={book._id} sx={card}>
+            <CardContent>
+              <CardMedia
+                component="img"
+                height="200"
+                sx={{ objectFit: "cover" }}
+                image={book.coverImageUrl}
+                alt={book.title}
+              />
+              <Typography variant="h5" component="div">
+                {book.title}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
       </Box>
     </>
   );
