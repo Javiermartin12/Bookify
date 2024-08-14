@@ -1,4 +1,4 @@
-export interface IBooksSchema extends Document {
+export interface IBooksSchema {
   title: string;
   author: string;
   genre: string;
