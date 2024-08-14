@@ -4,20 +4,37 @@ import { UserModel } from "../models/users.models";
 export const getAllUser = async (req: Request, res: Response) => {
   try {
     const allUser = await UserModel.find();
+    res.json(allUser);
     res.status(200).send(allUser);
   } catch (error) {
     res.status(400).send(error);
   }
 };
 export const createUser = async (req: Request, res: Response) => {
-  const { name, gmail, password } = req.body;
+  const { name, email, auth0Id } = req.body;
   try {
-    const newUser = await UserModel.create({ name, gmail, password });
+    const newUser = await UserModel.create({ name, email, auth0Id });
     res.status(200).send(newUser);
   } catch (error) {
     res.status(400).send(error);
   }
 };
+
+export const registerUserWithAuth0 = async (req: Request, res: Response) => {
+  const { email, name, auth0Id } = req.body;
+  try {
+    let user = await UserModel.findOne({ auth0Id });
+    if (!user) {
+      user = new UserModel({ email, name, auth0Id });
+      await user.save();
+    }
+    res.status(201).json({ message: "User registered succesfully", user });
+  } catch (error) {
+    console.error("Error en el backend:", error);
+    res.status(500).json({ message: "Error to singup user", error });
+  }
+};
+
 export const updateUser = async (req: Request, res: Response) => {
   const { name, gmail, password } = req.body;
   const { userId } = req.params;

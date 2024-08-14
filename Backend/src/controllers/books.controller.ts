@@ -10,23 +10,22 @@ export const getAllBooks = async (req: Request, res: Response) => {
   }
 };
 export const createBooks = async (req: Request, res: Response) => {
-  const {
-    title,
-    author,
-    genre,
-    publishedDate,
-    summary,
-    coverImageUrl,
-    synopsis,
-    userId,
-  } = req.body;
   try {
+    const {
+      title,
+      author,
+      genre,
+      publishedDate,
+      coverImageUrl,
+      synopsis,
+      userId,
+    } = req.body;
+
     const newBook = await BooksModel.create({
       title,
       author,
       genre,
       publishedDate,
-      summary,
       coverImageUrl,
       synopsis,
       userId,
@@ -37,13 +36,52 @@ export const createBooks = async (req: Request, res: Response) => {
   }
 };
 
+export const singupBooksFromFront = async (req: Request, res: Response) => {
+  try {
+    const {
+      title,
+      author,
+      genre,
+      publishedDate,
+      coverImageUrl,
+      synopsis,
+      userId,
+    } = req.body;
+    console.log({
+      title,
+      author,
+      genre,
+      publishedDate,
+      coverImageUrl,
+      synopsis,
+      userId,
+    });
+    const newBook = new BooksModel({
+      title,
+      author,
+      genre,
+      publishedDate,
+      coverImageUrl,
+      synopsis,
+      userId,
+    });
+    console.log(newBook);
+    const savedBook = await newBook.save();
+    res
+      .status(200)
+      .json({ message: "Book created successfully", book: savedBook });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Error creating book", error });
+  }
+};
+
 export const updateBooks = async (req: Request, res: Response) => {
   const {
     title,
     author,
     genre,
     publishedDate,
-    summary,
     coverImageUrl,
     synopsis,
     idUser,
@@ -57,7 +95,6 @@ export const updateBooks = async (req: Request, res: Response) => {
         author,
         genre,
         publishedDate,
-        summary,
         coverImageUrl,
         synopsis,
         idUser,

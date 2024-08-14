@@ -2,12 +2,12 @@ import {
   Box,
   Card,
   CardContent,
+  CardMedia,
   CircularProgress,
-  Grid,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { boxContainerBooks } from "../theme/materialUI/containerBooks.ts";
+import { boxContainerBooks, card } from "../theme/materialUI/containerBooks.ts";
 import { BookInterface } from "../interfaces/booksInterfaces.ts";
 import { getBooks } from "../services/bookServices.ts";
 
@@ -21,7 +21,6 @@ export const ContainerBooks: React.FC = () => {
       try {
         const response = await getBooks();
         setBooks(response);
-        console.log(response);
       } catch (error) {
         setError("Failed to fetch books. Please try again.");
       } finally {
@@ -37,25 +36,22 @@ export const ContainerBooks: React.FC = () => {
   return (
     <>
       <Box sx={boxContainerBooks}>
-        <Grid container spacing={3}>
-          {books.map((book) => (
-            <Grid item xs={12} sm={6} md={4} key={book.title}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {book.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Author: {book.author}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Published Date: {book.genre}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        {books.map((book) => (
+          <Card key={book._id} sx={card}>
+            <CardContent>
+              <CardMedia
+                component="img"
+                height="210"
+                sx={{ objectFit: "cover" }}
+                image={book.coverImageUrl}
+                alt={book.title}
+              />
+              <Typography variant="h6" component="div">
+                {book.title}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
       </Box>
     </>
   );

@@ -3,7 +3,7 @@ import { BookInterface } from "../interfaces/booksInterfaces";
 
 export const getBooks = async () => {
   try {
-    const response = await axiosInstance.get("/books");
+    const response = await axiosInstance.get("/api/books");
     return response.data;
     console.log(response);
   } catch (error) {
@@ -14,7 +14,7 @@ export const getBooks = async () => {
 
 export const getBooksById = async (id: string) => {
   try {
-    const response = await axiosInstance.get(`/books/${id}`);
+    const response = await axiosInstance.get(`/api/books/${id}`);
     return response.data;
     console.log(response);
   } catch (error) {
@@ -25,7 +25,7 @@ export const getBooksById = async (id: string) => {
 
 export const createBook = async (booksData: BookInterface) => {
   try {
-    const response = await axiosInstance.post("/books", booksData);
+    const response = await axiosInstance.post("/api/books/register", booksData);
     return response.data;
     console.log(response);
   } catch (error) {
@@ -35,7 +35,7 @@ export const createBook = async (booksData: BookInterface) => {
 };
 export const updateBook = async (id: string, booksData: BookInterface) => {
   try {
-    const response = await axiosInstance.patch(`/books/${id}`, booksData);
+    const response = await axiosInstance.patch(`/api/books/${id}`, booksData);
     return response.data;
     console.log(response);
   } catch (error) {

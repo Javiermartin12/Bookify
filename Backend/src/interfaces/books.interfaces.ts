@@ -1,9 +1,8 @@
-export interface IBooksSchema extends Document {
+export interface IBooksSchema {
   title: string;
   author: string;
   genre: string;
   publishedDate: Date;
-  summary?: string;
   coverImageUrl?: string;
   synopsis?: string;
   nameUser?: string;

@@ -1,10 +1,10 @@
 import React from "react";
 import SideBar from "../components/SideBar";
 
-export const CreateBooks: React.FC = () => {
+export const Settings: React.FC = () => {
   return (
     <>
-      <div>create books</div>
+      <div>Settings</div>
       <SideBar />
     </>
   );
