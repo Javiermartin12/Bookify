@@ -4,6 +4,7 @@ import { UserModel } from "../models/users.models";
 export const getAllUser = async (req: Request, res: Response) => {
   try {
     const allUser = await UserModel.find();
+    res.json(allUser);
     res.status(200).send(allUser);
   } catch (error) {
     res.status(400).send(error);
