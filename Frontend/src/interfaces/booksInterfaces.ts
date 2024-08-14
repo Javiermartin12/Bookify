@@ -6,5 +6,10 @@ export interface BookInterface {
   publishedDate: Date;
   coverImageUrl: string;
   synopsis: string;
-  nameUser: string;
+  nameUser: User[];
+}
+
+export interface User {
+  _id?: string;
+  name: string;
 }
