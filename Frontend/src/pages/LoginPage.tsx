@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { UserInterface } from "../interfaces/userInterface";
+import { button, mainBox } from "../theme/materialUI/loginPage";
 
 const LoginPage: React.FC = () => {
   const { loginWithRedirect } = useAuth0<UserInterface>();
@@ -12,21 +13,11 @@ const LoginPage: React.FC = () => {
         <Typography variant="h1" color="aliceblue" gutterBottom>
           Bookify
         </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            width: "100%",
-            padding: "1rem",
-          }}
-        >
+        <Box sx={mainBox}>
           <Button
             variant="contained"
             color="primary"
-            sx={{ margin: "1rem", height: "3rem", width: "7rem" }}
+            sx={button}
             onClick={() => loginWithRedirect()}
           >
             Log In
