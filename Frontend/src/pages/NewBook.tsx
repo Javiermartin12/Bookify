@@ -5,31 +5,33 @@ import {
   Box,
   Button,
   Container,
-  FormControl,
-  InputLabel,
   Link,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { getUser } from "../services/userServices";
-import { User } from "../interfaces/booksInterfaces";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL || "";
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET || "";
 
 export const NewBook: React.FC = () => {
+  const { user, isAuthenticated } = useAuth0();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [publishedDate, setPublishedDate] = useState<string>("");
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [synopsis, setSynopsis] = useState("");
-  const [nameUser, setNameUser] = useState<User[]>([]);
+  const [nameUser, setNameUser] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      setNameUser(user.name || "");
+    }
+  }, [isAuthenticated, user]);
 
   const handleImageUpload = async () => {
     if (!coverImage) return "";
@@ -70,7 +72,7 @@ export const NewBook: React.FC = () => {
         publishedDate: new Date(publishedDate),
         coverImageUrl: imageUrl,
         synopsis,
-        nameUser: [],
+        nameUser,
       });
       console.log(response);
     } catch (err) {
@@ -80,20 +82,6 @@ export const NewBook: React.FC = () => {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData: User[] = await getUser();
-        console.log(userData);
-        setNameUser(userData);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-        setNameUser([]);
-      }
-    };
-    fetchUser();
-  }, []);
 
   return (
     <Container maxWidth="sm" sx={{ padding: "1rem" }}>
@@ -160,16 +148,7 @@ export const NewBook: React.FC = () => {
             />
           </Box>
           <Box mb={2}>
-            <FormControl fullWidth>
-              <Select>
-                <InputLabel>Select User</InputLabel>
-                {nameUser.map((user) => (
-                  <MenuItem key={user._id} value={user._id}>
-                    {user.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <TextField label="User Name" value={nameUser} fullWidth disabled />
           </Box>
           {error && (
             <Box mb={2}>
