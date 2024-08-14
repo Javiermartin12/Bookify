@@ -5,8 +5,9 @@ import { UserInterface } from "../interfaces/userInterface";
 export const getUser = async () => {
   try {
     const response = await axios.get("/api/user");
+    console.log("API response:", response);
     return response.data;
-    console.log(response);
+    console.log(response.data);
   } catch (error) {
     console.log("Don`t received user");
     throw error;
