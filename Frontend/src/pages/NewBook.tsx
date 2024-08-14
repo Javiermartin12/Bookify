@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createBook } from "../services/bookServices";
 import {
   Alert,
   Box,
   Button,
   Container,
+  FormControl,
+  InputLabel,
   Link,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import { getUser } from "../services/userServices";
+import { User } from "../interfaces/booksInterfaces";
 
 const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL || "";
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET || "";
@@ -21,7 +27,7 @@ export const NewBook: React.FC = () => {
   const [publishedDate, setPublishedDate] = useState<string>("");
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [synopsis, setSynopsis] = useState("");
-  const [nameUser, setNameUser] = useState("");
+  const [nameUser, setNameUser] = useState<User[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -64,7 +70,7 @@ export const NewBook: React.FC = () => {
         publishedDate: new Date(publishedDate),
         coverImageUrl: imageUrl,
         synopsis,
-        nameUser,
+        nameUser: [],
       });
       console.log(response);
     } catch (err) {
@@ -74,6 +80,20 @@ export const NewBook: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData: User[] = await getUser();
+        console.log(userData);
+        setNameUser(userData);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        setNameUser([]);
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <Container maxWidth="sm" sx={{ padding: "1rem" }}>
@@ -140,12 +160,16 @@ export const NewBook: React.FC = () => {
             />
           </Box>
           <Box mb={2}>
-            <TextField
-              label="Created By"
-              value={nameUser}
-              onChange={(e) => setNameUser(e.target.value)}
-              fullWidth
-            />
+            <FormControl fullWidth>
+              <Select>
+                <InputLabel>Select User</InputLabel>
+                {nameUser.map((user) => (
+                  <MenuItem key={user._id} value={user._id}>
+                    {user.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
           {error && (
             <Box mb={2}>
