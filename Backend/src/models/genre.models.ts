@@ -1,10 +1,10 @@
 import { model, Schema } from "mongoose";
-import { IGenre } from "../interfaces/genre.interfaces";
-const genreSchema = new Schema<IGenre>(
+import { IGenreSchema } from "../interfaces/genre.interfaces";
+const genreSchema = new Schema<IGenreSchema>(
   {
     name: { type: String, required: true, unique: true },
   },
   { timestamps: true }
 );
 
-export const GenreModel = model<IGenre>("Genre", genreSchema);
+export const GenreModel = model<IGenreSchema>("Genre", genreSchema);
