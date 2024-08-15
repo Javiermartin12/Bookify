@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { BooksModel } from "../models/books.models";
 export const getAllBooks = async (req: Request, res: Response) => {
-  console.log(req, res);
   try {
     const getBooks = await BooksModel.find();
     res.status(200).send(getBooks);
