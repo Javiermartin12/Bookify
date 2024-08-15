@@ -5,7 +5,7 @@ const bookSchema = new Schema<IBooksSchema>(
   {
     title: { type: String, required: true },
     author: { type: String, required: true },
-    genre: { type: String, required: true },
+    genre: [{ type: Schema.Types.ObjectId, ref: "Genre" }],
     publishedDate: { type: Date },
     coverImageUrl: { type: String },
     synopsis: { type: String },
