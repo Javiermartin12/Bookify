@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { createBook } from "../services/bookServices";
 import {
   Alert,
+  Autocomplete,
   Box,
   Button,
+  Chip,
   Container,
   Link,
   TextField,
@@ -11,6 +13,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Genre } from "../interfaces/genreInterfaces";
+import { getGenre } from "../services/genreServices";
 
 const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL || "";
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET || "";
@@ -19,7 +23,8 @@ export const NewBook: React.FC = () => {
   const { user, isAuthenticated } = useAuth0();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
+  const [genres, setGenres] = useState<Genre[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
   const [publishedDate, setPublishedDate] = useState<string>("");
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [synopsis, setSynopsis] = useState("");
@@ -68,13 +73,14 @@ export const NewBook: React.FC = () => {
       const response = await createBook({
         title,
         author,
-        genre,
+        genre: selectedGenres.map((genre) => genre._id),
         publishedDate: new Date(publishedDate),
         coverImageUrl: imageUrl,
         synopsis,
         nameUser,
       });
       console.log(response);
+      console.log("Selected genres:", selectedGenres);
     } catch (err) {
       setError("Failed to create book.");
       console.log(err);
@@ -83,6 +89,25 @@ export const NewBook: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchGenre = async () => {
+      try {
+        const response = await getGenre();
+        setGenres(response);
+      } catch (error) {
+        console.log("Error fetching genres:", error);
+        console.error("Error fetching genres:", error);
+      }
+    };
+    fetchGenre();
+  }, []);
+
+  const handleGenreChange = (
+    _event: React.ChangeEvent<object>,
+    newValue: Genre[]
+  ) => {
+    setSelectedGenres(newValue);
+  };
   return (
     <Container maxWidth="sm" sx={{ padding: "1rem" }}>
       <Typography variant="h4" color="aliceblue" component="h2" gutterBottom>
@@ -109,12 +134,20 @@ export const NewBook: React.FC = () => {
             />
           </Box>
           <Box mb={2}>
-            <TextField
-              label="Genre"
-              value={genre}
-              onChange={(e) => setGenre(e.target.value)}
-              fullWidth
-              required
+            <Autocomplete
+              multiple
+              options={genres}
+              getOptionLabel={(option) => option.name}
+              value={selectedGenres}
+              onChange={handleGenreChange}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined" label="Genres" />
+              )}
+              renderTags={(value: Genre[], getTagProps) =>
+                value.map((option: Genre, index: number) => (
+                  <Chip label={option.name} {...getTagProps({ index })} />
+                ))
+              }
             />
           </Box>
           <Box mb={2}>
