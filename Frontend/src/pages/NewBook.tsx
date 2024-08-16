@@ -70,10 +70,11 @@ export const NewBook: React.FC = () => {
     setIsLoading(true);
     try {
       const imageUrl = await handleImageUpload();
+      const genreData = selectedGenres.map((genre) => genre.name);
       const response = await createBook({
         title,
         author,
-        genre: selectedGenres.map((genre) => genre._id),
+        genre: genreData,
         publishedDate: new Date(publishedDate),
         coverImageUrl: imageUrl,
         synopsis,
