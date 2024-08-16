@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { boxContainerBooks, card } from "../theme/materialUI/containerBooks.ts";
 import { BookInterface } from "../interfaces/booksInterfaces.ts";
 import { getBooks } from "../services/bookServices.ts";
+import { Link } from "wouter";
 
 export const ContainerBooks: React.FC = () => {
   const [books, setBooks] = useState<BookInterface[]>([]);
@@ -37,20 +38,22 @@ export const ContainerBooks: React.FC = () => {
     <>
       <Box sx={boxContainerBooks}>
         {books.map((book) => (
-          <Card key={book._id} sx={card}>
-            <CardContent>
-              <CardMedia
-                component="img"
-                height="210"
-                sx={{ objectFit: "cover" }}
-                image={book.coverImageUrl}
-                alt={book.title}
-              />
-              <Typography variant="h6" component="div">
-                {book.title}
-              </Typography>
-            </CardContent>
-          </Card>
+          <Link to={`/book-details/${book._id}`}>
+            <Card key={book._id} sx={card}>
+              <CardContent>
+                <CardMedia
+                  component="img"
+                  height="210"
+                  sx={{ objectFit: "cover" }}
+                  image={book.coverImageUrl}
+                  alt={book.title}
+                />
+                <Typography variant="h6" component="div">
+                  {book.title}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </Box>
     </>
