@@ -7,6 +7,7 @@ import { MyBooks } from "./pages/MyBooks.tsx";
 import { Settings } from "./pages/Settings.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import { NewBook } from "./pages/NewBook.tsx";
+import { BooksDetails } from "./pages/BooksDetails.tsx";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
           <PrivateRoute path="/mybooks" component={MyBooks} />
           <PrivateRoute path="/settings" component={Settings} />
           <Route path="/new-book" component={NewBook} />
+          <Route path="/book-details/:id" component={BooksDetails} />
         </div>
       </div>
     </>
