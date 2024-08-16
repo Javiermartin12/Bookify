@@ -1,10 +1,9 @@
-import axios from "axios";
-
 import { UserInterface } from "../interfaces/userInterface";
+import axiosInstance from "../axios.config";
 
 export const getUser = async () => {
   try {
-    const response = await axios.get("/api/user");
+    const response = await axiosInstance.get("/api/user");
     console.log("API response:", response);
     return response.data;
     console.log(response.data);
@@ -16,7 +15,7 @@ export const getUser = async () => {
 
 export const getUserById = async (id: string) => {
   try {
-    const response = await axios.get(`/api/user/${id}`);
+    const response = await axiosInstance.get(`/api/user/${id}`);
     return response.data;
     console.log(response);
   } catch (error) {
@@ -27,7 +26,7 @@ export const getUserById = async (id: string) => {
 
 export const updateUser = async (id: string, userData: UserInterface) => {
   try {
-    const response = await axios.patch(`/api/user/${id}`, userData);
+    const response = await axiosInstance.patch(`/api/user/${id}`, userData);
     return response.data;
     console.log(response);
   } catch (error) {
@@ -38,7 +37,7 @@ export const updateUser = async (id: string, userData: UserInterface) => {
 
 export const deleteUser = async (id: string) => {
   try {
-    const response = await axios.delete(`/api/user/${id}`);
+    const response = await axiosInstance.delete(`/api/user/${id}`);
     return response.data;
     console.log(response);
   } catch (error) {

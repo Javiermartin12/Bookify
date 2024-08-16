@@ -3,18 +3,19 @@ import { Theme } from "@mui/material";
 
 export const boxContainerBooks: SxProps<Theme> = {
   margin: "1rem",
-  borderRadius: "0.5rem",
   padding: "1rem",
   display: "flex",
   flexDirection: "row",
   flexFlow: "row wrap",
+  height: "60%",
   width: "93%",
-  marginBottom: "60px",
   overflow: "scroll",
   "@media (max-width:430px)": {
     marginBottom: "100px",
     width: "80%",
     height: "100%",
+    display: "flex",
+    justifyContent: "center",
   },
 };
 
@@ -25,11 +26,11 @@ export const card: SxProps<Theme> = {
   cursor: "pointer",
   flexFlow: "row wrpa",
   margin: "0.5rem",
-  height: "93%",
+  height: "auto",
   width: "20%",
   overflow: "hidden",
   "@media (max-width:430px)": {
     width: "60%",
-    height: "55%",
+    height: "auto",
   },
 };
