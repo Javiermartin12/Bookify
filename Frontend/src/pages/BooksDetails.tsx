@@ -9,6 +9,11 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
+import {
+  containerBook,
+  image,
+  mainCpontainer,
+} from "../theme/materialUI/bookDetails";
 
 export const BooksDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,12 +40,12 @@ export const BooksDetails: React.FC = () => {
   if (error) return <Alert>{error}</Alert>;
 
   return (
-    <Box>
+    <Box sx={mainCpontainer}>
       {book ? (
-        <Box>
+        <Box sx={containerBook}>
           <CardMedia
             component="img"
-            height="400"
+            sx={image}
             image={book.coverImageUrl}
             alt={book.title}
           />
