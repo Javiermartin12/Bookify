@@ -17,6 +17,15 @@ export const getBooksById = async (req: Request, res: Response) => {
     res.status(400).send(error);
   }
 };
+export const getBookByUser = async (req: Request, res: Response) => {
+  const { nameUser } = req.params;
+  try {
+    const user = await BooksModel.find({ nameUser });
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
 export const createBooks = async (req: Request, res: Response) => {
   try {
     const {
