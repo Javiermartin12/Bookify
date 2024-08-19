@@ -2,12 +2,11 @@ import { SxProps } from "@mui/material";
 import { Theme } from "@mui/material";
 
 export const boxContainerBooks: SxProps<Theme> = {
-  margin: "1rem",
-  padding: "1rem",
+  margin: "0.5rem",
+  padding: "0.5rem",
   display: "flex",
-  flexDirection: "row",
-  flexFlow: "row wrap",
-  height: "60%",
+  flexDirection: "column",
+  height: "75%",
   width: "93%",
   overflow: "scroll",
   "@media (max-width:430px)": {
