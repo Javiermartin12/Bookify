@@ -6,13 +6,16 @@ import {
   getAllBooks,
   singupBooksFromFront,
   getBooksById,
+  getBookByUser,
 } from "../controllers/books.controller";
 
 export const booksRoutes = Router();
 
 booksRoutes.get("/", getAllBooks);
+booksRoutes.get("/:nameUser", getBookByUser);
 booksRoutes.get("/:id", getBooksById);
 booksRoutes.post("/", createBooks);
+
 booksRoutes.post("/register", singupBooksFromFront);
 booksRoutes.patch("/:userId", updateBooks);
 booksRoutes.delete("/:userId", deleteBooks);
