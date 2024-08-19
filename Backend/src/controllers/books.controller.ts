@@ -26,7 +26,7 @@ export const createBooks = async (req: Request, res: Response) => {
       publishedDate,
       coverImageUrl,
       synopsis,
-      userId,
+      nameUser,
     } = req.body;
 
     const newBook = await BooksModel.create({
@@ -36,7 +36,7 @@ export const createBooks = async (req: Request, res: Response) => {
       publishedDate,
       coverImageUrl,
       synopsis,
-      userId,
+      nameUser,
     });
     res.status(200).send(newBook);
   } catch (error) {
@@ -53,7 +53,7 @@ export const singupBooksFromFront = async (req: Request, res: Response) => {
       publishedDate,
       coverImageUrl,
       synopsis,
-      userId,
+      nameUser,
     } = req.body;
     console.log({
       title,
@@ -62,7 +62,7 @@ export const singupBooksFromFront = async (req: Request, res: Response) => {
       publishedDate,
       coverImageUrl,
       synopsis,
-      userId,
+      nameUser,
     });
     const newBook = new BooksModel({
       title,
@@ -71,7 +71,7 @@ export const singupBooksFromFront = async (req: Request, res: Response) => {
       publishedDate,
       coverImageUrl,
       synopsis,
-      userId,
+      nameUser,
     });
     console.log(newBook);
     const savedBook = await newBook.save();
@@ -92,12 +92,12 @@ export const updateBooks = async (req: Request, res: Response) => {
     publishedDate,
     coverImageUrl,
     synopsis,
-    idUser,
+    nameUser,
   } = req.body;
-  const { userId } = req.params;
+  const { _id } = req.params;
   try {
     const bookUpdated = await BooksModel.findByIdAndUpdate(
-      { _id: userId },
+      { _id: _id },
       {
         title,
         author,
@@ -105,7 +105,7 @@ export const updateBooks = async (req: Request, res: Response) => {
         publishedDate,
         coverImageUrl,
         synopsis,
-        idUser,
+        nameUser,
       },
       { new: true }
     );
