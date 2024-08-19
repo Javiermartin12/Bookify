@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "wouter";
+import { Link, useParams } from "wouter";
 import { getBooksById } from "../services/bookServices";
 import { BookInterface } from "../interfaces/booksInterfaces";
 import {
   Alert,
   Box,
+  Button,
   CardMedia,
   CircularProgress,
   Typography,
@@ -62,6 +63,21 @@ export const BooksDetails: React.FC = () => {
           <Typography variant="body1" paragraph>
             {book.synopsis}
           </Typography>
+          <Link href="/home">
+            <Button
+              type="button"
+              variant="contained"
+              color="secondary"
+              fullWidth
+            >
+              Back
+            </Button>
+          </Link>
+          <Link href="">
+            <Button type="button" variant="contained" color="primary" fullWidth>
+              Update
+            </Button>
+          </Link>
         </Box>
       ) : (
         <Alert severity="warning">No book found.</Alert>
