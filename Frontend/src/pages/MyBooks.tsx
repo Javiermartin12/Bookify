@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
-import { HeaderMyBooks } from "../components/HeaderMyBooks";
+
 import { BookInterface } from "../interfaces/booksInterfaces";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBookByUser } from "../services/bookServices";
@@ -12,7 +12,13 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
-import { cardMyBooks, containerBooks } from "../theme/materialUI/myBooks";
+import {
+  cardMyBooks,
+  containerBooks,
+  headerMyBook,
+  rightMyBookContainer,
+  title,
+} from "../theme/materialUI/myBooks";
 
 export const MyBooks: React.FC = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -42,26 +48,32 @@ export const MyBooks: React.FC = () => {
   return (
     <>
       <SideBar />
-      <HeaderMyBooks />
+      <Box sx={rightMyBookContainer}>
+        <Box sx={headerMyBook}>
+          <Typography sx={title} variant="h4">
+            My books created
+          </Typography>
+        </Box>
 
-      <Box sx={containerBooks}>
-        {books.length > 0 ? (
-          books.map((book) => (
-            <Card key={book._id} sx={cardMyBooks}>
-              <CardContent>
-                <CardMedia
-                  component="img"
-                  height="290"
-                  image={book.coverImageUrl}
-                  alt={book.title}
-                />
-                <Typography variant="h6">{book.title}</Typography>
-              </CardContent>
-            </Card>
-          ))
-        ) : (
-          <Typography>No books found.</Typography>
-        )}
+        <Box sx={containerBooks}>
+          {books.length > 0 ? (
+            books.map((book) => (
+              <Card key={book._id} sx={cardMyBooks}>
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="210"
+                    image={book.coverImageUrl}
+                    alt={book.title}
+                  />
+                  <Typography variant="h6">{book.title}</Typography>
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            <Typography>No books found.</Typography>
+          )}
+        </Box>
       </Box>
     </>
   );
