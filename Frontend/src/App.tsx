@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <div className="continerMain">
           <Route path="/" component={LoginPage} />
           <Route path="/home" component={Home} />
-          <PrivateRoute path="/mybooks" component={MyBooks} />
+          <PrivateRoute path="/my-books" component={MyBooks} />
           <PrivateRoute path="/settings" component={Settings} />
           <Route path="/new-book" component={NewBook} />
           <Route path="/book-details/:id" component={BooksDetails} />
