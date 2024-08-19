@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { BooksModel } from "../models/books.models";
+
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
     const getBooks = await BooksModel.find();
@@ -18,10 +19,13 @@ export const getBooksById = async (req: Request, res: Response) => {
   }
 };
 export const getBookByUser = async (req: Request, res: Response) => {
-  const { nameUser } = req.params;
   try {
-    const user = await BooksModel.find({ nameUser });
-    res.status(200).send(user);
+    const { nameUser } = req.params;
+
+    const userBooks = await BooksModel.find({ nameUser });
+
+    console.log("User books found:", userBooks);
+    res.status(200).send(userBooks);
   } catch (error) {
     res.status(400).send(error);
   }
