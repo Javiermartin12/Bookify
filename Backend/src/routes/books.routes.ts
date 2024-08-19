@@ -12,7 +12,7 @@ import {
 export const booksRoutes = Router();
 
 booksRoutes.get("/", getAllBooks);
-booksRoutes.get("/:nameUser", getBookByUser);
+booksRoutes.get("/by/:nameUser", getBookByUser);
 booksRoutes.get("/:id", getBooksById);
 booksRoutes.post("/", createBooks);
 
