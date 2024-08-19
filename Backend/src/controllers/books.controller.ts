@@ -138,3 +138,21 @@ export const deleteBooks = async (req: Request, res: Response) => {
     res.status(400).send(error);
   }
 };
+
+export const searchBooks = async (req: Request, res: Response) => {
+  try {
+    const { query } = req.params;
+    console.log(query);
+    const searchRegex = new RegExp(query, "i");
+    const books = await BooksModel.find({
+      $or: [
+        { title: searchRegex },
+        { author: searchRegex },
+        { genre: searchRegex },
+      ],
+    });
+    res.status(200).send(books);
+  } catch (error) {
+    res.status(500).send({ error: "Error searching for books" });
+  }
+};
