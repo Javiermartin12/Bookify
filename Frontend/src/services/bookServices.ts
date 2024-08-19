@@ -22,6 +22,15 @@ export const getBooksById = async (id: string) => {
     throw error;
   }
 };
+export const getBookByUser = async (nameUser: string) => {
+  try {
+    const user = await axiosInstance.get(`/api/books/${nameUser}`);
+    return user.data;
+  } catch (error) {
+    console.log("Error fetching books by user", error);
+    throw error;
+  }
+};
 
 export const createBook = async (booksData: BookInterface) => {
   try {
