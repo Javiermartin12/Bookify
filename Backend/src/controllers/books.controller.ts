@@ -141,7 +141,10 @@ export const deleteBooks = async (req: Request, res: Response) => {
 
 export const searchBooks = async (req: Request, res: Response) => {
   try {
-    const { query } = req.params;
+    const query = req.query;
+    if (typeof query !== "string") {
+      return res.status(400).send({ error: "Invalid search query" });
+    }
     console.log(query);
     const searchRegex = new RegExp(query, "i");
     const books = await BooksModel.find({
