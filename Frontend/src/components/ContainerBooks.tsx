@@ -21,28 +21,38 @@ export const ContainerBooks: React.FC = () => {
     setLocation(`/book-details/${id}`);
   };
 
-  const fetchBooks = async () => {
+  const fetchBooks = async (query: string) => {
+    setLoading(true);
     try {
-      const response = await getBooks();
-      setBooks(response);
-      setFilteredBooks(response);
+      if (query.trim() === "") {
+        const response = await getBooks();
+        setBooks(response);
+        setFilteredBooks(response);
+      } else {
+        const response = await searchBooks(query);
+        setBooks(response);
+        setFilteredBooks(response);
+      }
     } catch (error) {
       console.log("Failed to fetch books. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
   const handleSearch = async (query: string) => {
-    if (query.trim().length === 0) return;
+    if (query.trim().length === 0) {
+      await fetchBooks("");
+    }
     try {
-      const response = await searchBooks(query);
-      setFilteredBooks(response);
+      const response = await searchBooks(query.trim());
+      setBooks(response);
     } catch (error) {
       console.log("Failed to search books. Please try again.");
     }
   };
   useEffect(() => {
-    fetchBooks();
+    fetchBooks("");
   }, []);
 
   return (
@@ -52,27 +62,31 @@ export const ContainerBooks: React.FC = () => {
           <SearchBar onSearch={handleSearch} />
         </Box>
         <Box sx={renderBooks}>
-          {books.map((book) => (
-            <Card
-              key={book._id}
-              sx={card}
-              onClick={() => handleCardClick(book._id!)}
-              style={{ cursor: "pointer" }}
-            >
-              <CardContent>
-                <CardMedia
-                  component="img"
-                  height="210"
-                  sx={{ objectFit: "cover" }}
-                  image={book.coverImageUrl}
-                  alt={book.title}
-                />
-                <Typography variant="h6" component="div">
-                  {book.title}
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
+          {books.length === 0 ? (
+            <Typography>No books found</Typography>
+          ) : (
+            books.map((book) => (
+              <Card
+                key={book._id}
+                sx={card}
+                onClick={() => handleCardClick(book._id!)}
+                style={{ cursor: "pointer" }}
+              >
+                <CardContent>
+                  <CardMedia
+                    component="img"
+                    height="210"
+                    sx={{ objectFit: "cover" }}
+                    image={book.coverImageUrl}
+                    alt={book.title}
+                  />
+                  <Typography variant="h6" component="div">
+                    {book.title}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))
+          )}
         </Box>
       </Box>
     </>
