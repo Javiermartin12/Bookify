@@ -33,3 +33,9 @@ export const card: SxProps<Theme> = {
     height: "auto",
   },
 };
+
+export const renderBooks: SxProps<Theme> = {
+  display: "flex",
+  justifyContent: "row",
+  flexFlow: "wrap",
+};
