@@ -8,7 +8,6 @@ export const boxContainerBooks: SxProps<Theme> = {
   flexDirection: "column",
   height: "75%",
   width: "93%",
-  overflow: "scroll",
   "@media (max-width:430px)": {
     marginBottom: "100px",
     width: "80%",
@@ -38,4 +37,5 @@ export const renderBooks: SxProps<Theme> = {
   display: "flex",
   justifyContent: "row",
   flexFlow: "wrap",
+  overflow: "scroll",
 };
