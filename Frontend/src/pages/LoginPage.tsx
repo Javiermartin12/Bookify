@@ -2,14 +2,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { UserInterface } from "../interfaces/userInterface";
-import { boxWelcomePage, button, mainBox } from "../theme/materialUI/loginPage";
+import {
+  boxTitle,
+  boxWelcomePage,
+  button,
+  logBox,
+  mainBox,
+} from "../theme/materialUI/loginPage";
 
 const LoginPage: React.FC = () => {
   const { loginWithRedirect } = useAuth0<UserInterface>();
 
   return (
     <>
-      <Box sx={{ padding: "1rem", height: "100%", width: "100%" }}>
+      <Box sx={boxTitle}>
         <Typography variant="h1" color="aliceblue" gutterBottom>
           Bookify
         </Typography>
@@ -23,17 +29,19 @@ const LoginPage: React.FC = () => {
               about the person who published it.
             </Typography>
           </Box>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={button}
-            onClick={() => loginWithRedirect()}
-          >
-            Log In
-          </Button>
-          <Typography variant="h6" color="aliceblue" gutterBottom>
-            Please log in to continue
-          </Typography>
+          <Box sx={logBox}>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={button}
+              onClick={() => loginWithRedirect()}
+            >
+              Log In
+            </Button>
+            <Typography variant="h6" color="aliceblue" gutterBottom>
+              Please log in to continue
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </>
