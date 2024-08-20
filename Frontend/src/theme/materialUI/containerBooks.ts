@@ -2,14 +2,12 @@ import { SxProps } from "@mui/material";
 import { Theme } from "@mui/material";
 
 export const boxContainerBooks: SxProps<Theme> = {
-  margin: "1rem",
-  padding: "1rem",
+  margin: "0.5rem",
+  padding: "0.5rem",
   display: "flex",
-  flexDirection: "row",
-  flexFlow: "row wrap",
-  height: "60%",
+  flexDirection: "column",
+  height: "75%",
   width: "93%",
-  overflow: "scroll",
   "@media (max-width:430px)": {
     marginBottom: "100px",
     width: "80%",
@@ -33,4 +31,11 @@ export const card: SxProps<Theme> = {
     width: "60%",
     height: "auto",
   },
+};
+
+export const renderBooks: SxProps<Theme> = {
+  display: "flex",
+  justifyContent: "row",
+  flexFlow: "wrap",
+  overflow: "scroll",
 };

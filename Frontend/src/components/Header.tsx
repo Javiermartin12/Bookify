@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [, navigate] = useLocation();
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return;
   }
 
   return (

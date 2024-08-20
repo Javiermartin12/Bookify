@@ -1,10 +1,11 @@
 import "../CSS/componentsCSS/sideBar.css";
 import React from "react";
 import { Home, Message, Search, Add, Book } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { sideBarContainerStyles } from "../theme/materialUI/mtUI";
 import { Link } from "wouter";
 import LogoutButton from "./subComponents/LogoutButton";
+import { myBooksTypogr } from "../theme/materialUI/sideBar";
 const SideBar: React.FC = () => {
   return (
     <div className="sideBar">
@@ -12,7 +13,7 @@ const SideBar: React.FC = () => {
         <Link href="/home">
           <Home />
         </Link>
-        <Link href="/mybooks">
+        <Link href="/my-books">
           <Book />
         </Link>
         <Link href="/new-book">
@@ -24,7 +25,12 @@ const SideBar: React.FC = () => {
         </Link>
       </Box>
       <h1 className="sideBarTitle">Home</h1>
-      <p className="sideBarSubTitle">All books</p>
+      <Link href="/home">
+        <p className="sideBarSubTitle">All books</p>
+      </Link>
+      <Link href="/my-books">
+        <Typography sx={myBooksTypogr}>My books</Typography>
+      </Link>
       <LogoutButton />
     </div>
   );
