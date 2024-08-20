@@ -1,68 +1,79 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { boxContainerBooks, card } from "../theme/materialUI/containerBooks.ts";
+import {
+  boxContainerBooks,
+  card,
+  renderBooks,
+} from "../theme/materialUI/containerBooks.ts";
 import { BookInterface } from "../interfaces/booksInterfaces.ts";
-import { getBooks } from "../services/bookServices.ts";
+import { getBooks, searchBooks } from "../services/bookServices.ts";
 import { useLocation } from "wouter";
+import SearchBar from "./SearchBar.tsx";
 
 export const ContainerBooks: React.FC = () => {
   const [books, setBooks] = useState<BookInterface[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setFilteredBooks] = useState<BookInterface[]>([]);
+  const [, setLoading] = useState<boolean>(true);
+
   const [, setLocation] = useLocation();
 
   const handleCardClick = (id: string) => {
     setLocation(`/book-details/${id}`);
   };
 
+  const fetchBooks = async () => {
+    try {
+      const response = await getBooks();
+      setBooks(response);
+      setFilteredBooks(response);
+    } catch (error) {
+      console.log("Failed to fetch books. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleSearch = async (query: string) => {
+    if (query.trim().length === 0) return;
+    try {
+      const response = await searchBooks(query);
+      setFilteredBooks(response);
+    } catch (error) {
+      console.log("Failed to search books. Please try again.");
+    }
+  };
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await getBooks();
-        setBooks(response);
-      } catch (error) {
-        setError("Failed to fetch books. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchBooks();
   }, []);
-
-  if (loading) return <CircularProgress />;
-  if (error) return <div>{error}</div>;
 
   return (
     <>
       <Box sx={boxContainerBooks}>
-        {books.map((book) => (
-          <Card
-            key={book._id}
-            sx={card}
-            onClick={() => handleCardClick(book._id!)}
-            style={{ cursor: "pointer" }}
-          >
-            <CardContent>
-              <CardMedia
-                component="img"
-                height="210"
-                sx={{ objectFit: "cover" }}
-                image={book.coverImageUrl}
-                alt={book.title}
-              />
-              <Typography variant="h6" component="div">
-                {book.title}
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
+        <Box>
+          <SearchBar onSearch={handleSearch} />
+        </Box>
+        <Box sx={renderBooks}>
+          {books.map((book) => (
+            <Card
+              key={book._id}
+              sx={card}
+              onClick={() => handleCardClick(book._id!)}
+              style={{ cursor: "pointer" }}
+            >
+              <CardContent>
+                <CardMedia
+                  component="img"
+                  height="210"
+                  sx={{ objectFit: "cover" }}
+                  image={book.coverImageUrl}
+                  alt={book.title}
+                />
+                <Typography variant="h6" component="div">
+                  {book.title}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
       </Box>
     </>
   );
