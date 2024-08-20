@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "wouter";
 import { getBooksById } from "../services/bookServices";
 import { BookInterface } from "../interfaces/booksInterfaces";
-import {
-  Alert,
-  Box,
-  Button,
-  CardMedia,
-  CircularProgress,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Button, CardMedia, Typography } from "@mui/material";
 import {
   containerBook,
   image,
@@ -19,7 +12,7 @@ import {
 export const BooksDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [book, setBook] = useState<BookInterface | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -37,7 +30,6 @@ export const BooksDetails: React.FC = () => {
     fetchBook();
   }, [id]);
 
-  if (loading) return <CircularProgress />;
   if (error) return <Alert>{error}</Alert>;
 
   return (
@@ -58,6 +50,9 @@ export const BooksDetails: React.FC = () => {
           </Typography>
           <Typography>
             Published Date: {new Date(book.publishedDate).toLocaleDateString()}
+          </Typography>
+          <Typography variant="body2">
+            Genre: {book.genre.join(", ")}
           </Typography>
           <Typography>Published by: {book.nameUser}</Typography>
           <Typography variant="body1" paragraph>
