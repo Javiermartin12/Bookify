@@ -11,9 +11,10 @@ export const boxContainerBooks: SxProps<Theme> = {
   "@media (max-width:430px)": {
     marginBottom: "100px",
     width: "80%",
-    height: "100%",
+    height: "70%",
     display: "flex",
-    justifyContent: "center",
+
+    flexDirection: "column",
   },
 };
 
