@@ -54,11 +54,22 @@ export const updateBook = async (id: string, booksData: BookInterface) => {
 };
 export const deleteBook = async (id: string) => {
   try {
-    const response = await axiosInstance.delete(`/books/${id}`);
+    const response = await axiosInstance.delete(`/api/books/${id}`);
     return response.data;
     console.log(response);
   } catch (error) {
     console.log("Book don`t book deleted", error);
+    throw error;
+  }
+};
+
+export const searchBooks = async (query: string) => {
+  try {
+    const response = await axiosInstance.get(`/api/books/search/${query}`);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log("Book don`t book received", error);
     throw error;
   }
 };
