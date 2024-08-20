@@ -141,9 +141,9 @@ export const deleteBooks = async (req: Request, res: Response) => {
 
 export const searchBooks = async (req: Request, res: Response) => {
   try {
-    const query = req.query;
-    if (typeof query !== "string") {
-      return res.status(400).send({ error: "Invalid search query" });
+    const query = req.params.query;
+    if (!query) {
+      return res.status(400).json({ error: "Invalid search query" });
     }
     console.log(query);
     const searchRegex = new RegExp(query, "i");
