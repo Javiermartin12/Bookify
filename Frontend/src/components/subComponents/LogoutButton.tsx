@@ -6,14 +6,7 @@ const LogoutButton: React.FC = () => {
   const { logout } = useAuth0();
 
   return (
-    <Box
-      sx={{
-        marginTop: "auto",
-        "@media (max-width: 430px)": {
-          display: "none",
-        },
-      }}
-    >
+    <Box>
       <Button
         variant="contained"
         color="primary"

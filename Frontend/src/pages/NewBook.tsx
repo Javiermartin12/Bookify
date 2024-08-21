@@ -7,7 +7,6 @@ import {
   Button,
   Chip,
   Container,
-  Link,
   TextField,
   Typography,
 } from "@mui/material";
@@ -15,12 +14,15 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Genre } from "../interfaces/genreInterfaces";
 import { getGenre } from "../services/genreServices";
+import { useLocation } from "wouter";
+import { buttonContainer } from "../theme/materialUI/bookDetails";
 
 const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL || "";
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET || "";
 
 export const NewBook: React.FC = () => {
   const { user, isAuthenticated } = useAuth0();
+  const [, navigate] = useLocation();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genres, setGenres] = useState<Genre[]>([]);
@@ -31,6 +33,9 @@ export const NewBook: React.FC = () => {
   const [nameUser, setNameUser] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const handleNavigation = () => {
+    navigate("/home");
+  };
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -45,10 +50,8 @@ export const NewBook: React.FC = () => {
     formData.append("upload_preset", UPLOAD_PRESET);
     try {
       const response = await axios.post(CLOUDINARY_URL, formData);
-      console.log("Image upload response:", response.data);
       return response.data.secure_url;
     } catch (error) {
-      console.error("Error uploading image:", error);
       setError("Failed to upload image.");
       return "";
     }
@@ -81,10 +84,8 @@ export const NewBook: React.FC = () => {
         nameUser,
       });
       console.log(response);
-      console.log("Selected genres:", selectedGenres);
     } catch (err) {
       setError("Failed to create book.");
-      console.log(err);
     } finally {
       setIsLoading(false);
     }
@@ -96,7 +97,6 @@ export const NewBook: React.FC = () => {
         const response = await getGenre();
         setGenres(response);
       } catch (error) {
-        console.log("Error fetching genres:", error);
         console.error("Error fetching genres:", error);
       }
     };
@@ -189,25 +189,29 @@ export const NewBook: React.FC = () => {
               <Alert severity="error">{error}</Alert>
             </Box>
           )}
-          <Link href="/home">
+          <Box sx={buttonContainer}>
             <Button
               type="button"
+              sx={{ width: "15%" }}
               variant="contained"
               color="secondary"
               fullWidth
+              onClick={handleNavigation}
             >
               Back
             </Button>
-          </Link>
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={isLoading}
-            color="primary"
-            fullWidth
-          >
-            {isLoading ? "Creating..." : "Create Book"}
-          </Button>
+
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ width: "30%" }}
+              disabled={isLoading}
+              color="primary"
+              fullWidth
+            >
+              {isLoading ? "Creating..." : "Create Book"}
+            </Button>
+          </Box>
         </form>
       </Box>
     </Container>

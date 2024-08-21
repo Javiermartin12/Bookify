@@ -21,10 +21,7 @@ export const getBooksById = async (req: Request, res: Response) => {
 export const getBookByUser = async (req: Request, res: Response) => {
   try {
     const { nameUser } = req.params;
-
     const userBooks = await BooksModel.find({ nameUser });
-
-    console.log("User books found:", userBooks);
     res.status(200).send(userBooks);
   } catch (error) {
     res.status(400).send(error);
@@ -68,15 +65,6 @@ export const singupBooksFromFront = async (req: Request, res: Response) => {
       synopsis,
       nameUser,
     } = req.body;
-    console.log({
-      title,
-      author,
-      genre,
-      publishedDate,
-      coverImageUrl,
-      synopsis,
-      nameUser,
-    });
     const newBook = new BooksModel({
       title,
       author,
@@ -86,13 +74,11 @@ export const singupBooksFromFront = async (req: Request, res: Response) => {
       synopsis,
       nameUser,
     });
-    console.log(newBook);
     const savedBook = await newBook.save();
     res
       .status(200)
       .json({ message: "Book created successfully", book: savedBook });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ message: "Error creating book", error });
   }
 };
@@ -125,7 +111,6 @@ export const updateBooks = async (req: Request, res: Response) => {
     res.status(200).send(bookUpdated);
   } catch (error) {
     res.status(400).send(error);
-    console.log(error);
   }
 };
 
@@ -145,7 +130,6 @@ export const searchBooks = async (req: Request, res: Response) => {
     if (!query) {
       return res.status(400).json({ error: "Invalid search query" });
     }
-    console.log(query);
     const searchRegex = new RegExp(query, "i");
     const books = await BooksModel.find({
       $or: [

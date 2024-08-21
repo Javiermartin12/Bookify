@@ -31,8 +31,6 @@ export const MyBooks: React.FC = () => {
       try {
         if (isAuthenticated && user) {
           const userBooks = await getBookByUser(user.name || "");
-
-          console.log(userBooks);
           setBooks(userBooks);
         }
       } catch (error) {

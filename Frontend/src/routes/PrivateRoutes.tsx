@@ -10,7 +10,7 @@ export const PrivateRoute: React.FC<{
   const [, setLocation] = useLocation();
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <div>Conecting...</div>;
   }
   if (!isAuthenticated) {
     setLocation("/");

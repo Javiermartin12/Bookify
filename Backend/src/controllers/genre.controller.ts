@@ -7,7 +7,6 @@ export const getGenres = async (req: Request, res: Response) => {
     res.status(200).send(genres);
   } catch (error) {
     res.status(400).send(error);
-    console.log(error);
   }
 };
 
@@ -18,6 +17,5 @@ export const createGenre = async (req: Request, res: Response) => {
     res.status(200).send(genre);
   } catch (error) {
     res.status(400).send(error);
-    console.log(error);
   }
 };
