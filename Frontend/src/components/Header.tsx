@@ -1,8 +1,8 @@
 import React from "react";
 import "../CSS/componentsCSS/header.css";
 import { Box, Button, Typography } from "@mui/material";
-import { filterListIcon, headerButtonStyles } from "../theme/materialUI/mtUI";
-import FilterListIcon from "@mui/icons-material/FilterList";
+import { headerButtonStyles } from "../theme/materialUI/mtUI";
+
 import {
   boxToAvatar,
   boxToRow,
@@ -31,7 +31,6 @@ const Header: React.FC = () => {
         <p className="booksExist"> Number of books exist</p>
       </div>
       <div className="headerContainerRight">
-        <FilterListIcon sx={filterListIcon} />
         <Button
           variant="contained"
           sx={headerButtonStyles}
