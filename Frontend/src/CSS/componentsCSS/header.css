@@ -5,11 +5,6 @@
   display: flex;
   flex-direction: row;
 }
-@media (max-width: 430px) {
-  .headerMain {
-    height: 24%;
-  }
-}
 .headerContainer {
   height: 100%;
   width: 85%;
@@ -17,15 +12,26 @@
   border-radius: 0.5rem;
   overflow: hidden;
 }
+@media (max-width: 430px) {
+  .headerMain {
+    height: 24%;
+  }
+  .headerContainer {
+    height: 100%;
+    width: 90%;
+  }
+}
 
 .headerTitle {
   color: aliceblue;
   font-size: xx-large;
+  width: 40%;
   margin: 1.4rem 0 0.7rem 0;
 }
 .booksExist {
   color: aliceblue;
   padding-top: 0.3rem;
+  width: 70%;
 }
 @media (max-width: 430px) {
   .headerTitle {
@@ -42,4 +48,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 430px) {
+  .headerContainerRight {
+    width: 40%;
+    height: 100%;
+  }
 }
