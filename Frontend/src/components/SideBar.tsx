@@ -27,10 +27,15 @@ const SideBar: React.FC = () => {
         </Link>
       </Box>
       <h1 className="sideBarTitle">Home</h1>
-      <Link href="/home">
-        <p className="sideBarSubTitle">All books</p>
-      </Link>
-      <Link href="/my-books">
+      <Typography sx={myBooksTypogr}>
+        <Link href="/home" style={{ textDecoration: "none", color: "inherit" }}>
+          All books
+        </Link>
+      </Typography>
+      <Link
+        href="/my-books"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
         <Typography sx={myBooksTypogr}>My books</Typography>
       </Link>
       <Box sx={styleLogoutBox}>
