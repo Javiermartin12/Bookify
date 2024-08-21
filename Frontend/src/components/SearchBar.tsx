@@ -1,10 +1,7 @@
 import { TextField, InputAdornment, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { debounce } from "lodash"; // Importa debounce de lodash
-import {
-  searchBarContainerStyles,
-  searchBarStyles,
-} from "../theme/materialUI/mtUI";
+import { searchBarStyles } from "../theme/materialUI/mtUI";
 import React, { useState } from "react";
 import { SearchBarProps } from "../interfaces/global";
 
@@ -27,7 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
   return (
     <div>
-      <Box sx={searchBarContainerStyles}>
+      <Box>
         <TextField
           variant="outlined"
           placeholder="Search book for you..."
