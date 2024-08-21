@@ -7,7 +7,6 @@ import {
   Button,
   Chip,
   Container,
-  Link,
   TextField,
   Typography,
 } from "@mui/material";
@@ -15,12 +14,14 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Genre } from "../interfaces/genreInterfaces";
 import { getGenre } from "../services/genreServices";
+import { useLocation } from "wouter";
 
 const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL || "";
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET || "";
 
 export const NewBook: React.FC = () => {
   const { user, isAuthenticated } = useAuth0();
+  const [, navigate] = useLocation();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genres, setGenres] = useState<Genre[]>([]);
@@ -31,6 +32,14 @@ export const NewBook: React.FC = () => {
   const [nameUser, setNameUser] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const handleNavigation = () => {
+    navigate("/home");
+  };
+
+  useEffect(() => {
+    console.log("Home Component - isAuthenticated:", isAuthenticated);
+    console.log("Home Component - User:", user);
+  }, [isAuthenticated, user]);
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -189,16 +198,17 @@ export const NewBook: React.FC = () => {
               <Alert severity="error">{error}</Alert>
             </Box>
           )}
-          <Link href="/home">
-            <Button
-              type="button"
-              variant="contained"
-              color="secondary"
-              fullWidth
-            >
-              Back
-            </Button>
-          </Link>
+
+          <Button
+            type="button"
+            variant="contained"
+            color="secondary"
+            fullWidth
+            onClick={handleNavigation}
+          >
+            Back
+          </Button>
+
           <Button
             type="submit"
             variant="contained"
