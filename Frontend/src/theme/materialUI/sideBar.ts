@@ -9,3 +9,10 @@ export const myBooksTypogr: SxProps<Theme> = {
     cursor: "pointer",
   },
 };
+
+export const styleLogoutBox: SxProps<Theme> = {
+  marginTop: "auto",
+  "@media (max-width:430px)": {
+    display: "none",
+  },
+};
