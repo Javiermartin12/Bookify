@@ -15,6 +15,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Genre } from "../interfaces/genreInterfaces";
 import { getGenre } from "../services/genreServices";
 import { useLocation } from "wouter";
+import { buttonContainer } from "../theme/materialUI/bookDetails";
 
 const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL || "";
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET || "";
@@ -188,26 +189,29 @@ export const NewBook: React.FC = () => {
               <Alert severity="error">{error}</Alert>
             </Box>
           )}
+          <Box sx={buttonContainer}>
+            <Button
+              type="button"
+              sx={{ width: "15%" }}
+              variant="contained"
+              color="secondary"
+              fullWidth
+              onClick={handleNavigation}
+            >
+              Back
+            </Button>
 
-          <Button
-            type="button"
-            variant="contained"
-            color="secondary"
-            fullWidth
-            onClick={handleNavigation}
-          >
-            Back
-          </Button>
-
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={isLoading}
-            color="primary"
-            fullWidth
-          >
-            {isLoading ? "Creating..." : "Create Book"}
-          </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ width: "30%" }}
+              disabled={isLoading}
+              color="primary"
+              fullWidth
+            >
+              {isLoading ? "Creating..." : "Create Book"}
+            </Button>
+          </Box>
         </form>
       </Box>
     </Container>

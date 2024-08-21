@@ -43,7 +43,7 @@ export const image: SxProps<Theme> = {
 };
 
 export const buttonContainer: SxProps<Theme> = {
-  width: "90%",
+  width: "100%",
   display: "flex",
   justifyContent: "space-around",
 };
