@@ -31,7 +31,6 @@ const Header: React.FC = () => {
           )}
         </Box>
         <h2 className="headerTitle">Books</h2>
-        <p className="booksExist"> Number of books exist</p>
       </div>
       <div className="headerContainerRight">
         <Box sx={logOut}>
