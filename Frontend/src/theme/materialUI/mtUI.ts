@@ -61,23 +61,6 @@ export const headerButtonStyles: SxProps<Theme> = {
   ...headerButtonStylesMobile,
   "@media (min-width:430px)": headerButtonStylesDesktop,
 };
-export const filterListIcon: SxProps<Theme> = {
-  "@media (min-width:430px)": {
-    display: "none",
-  },
-  "@media (max-width:430px)": {
-    background: "rgba(0, 0, 0, 0.2)",
-    borderRadius: "50%",
-    padding: "0.5rem",
-    overflow: "hidden",
-    "&:hover": {
-      background: "rgba(0, 0, 0, 0.3)",
-    },
-    "&:active": {
-      background: "rgba(255, 255, 255, 0.3)",
-    },
-  },
-};
 
 export const searchBarContainerStyles: SxProps<Theme> = {
   "@media (max-width:430px)": {
