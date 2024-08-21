@@ -23,7 +23,7 @@ export const card: SxProps<Theme> = {
   width: "20%",
   overflow: "hidden",
   "@media (max-width:430px)": {
-    width: "60%",
+    width: "50%",
     height: "auto",
   },
 };
