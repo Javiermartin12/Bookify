@@ -17,10 +17,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;
-    console.log(newQuery);
     setQuery(newQuery);
     debouncedSearch(newQuery, onSearch);
-    console.log(newQuery);
   };
   return (
     <div>

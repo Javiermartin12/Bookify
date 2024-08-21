@@ -34,7 +34,7 @@ export const ContainerBooks: React.FC = () => {
         setFilteredBooks(response);
       }
     } catch (error) {
-      console.log("Failed to fetch books. Please try again.");
+      throw "Failed to fetch books. Please try again.";
     } finally {
       setLoading(false);
     }
@@ -48,7 +48,7 @@ export const ContainerBooks: React.FC = () => {
       const response = await searchBooks(query.trim());
       setBooks(response);
     } catch (error) {
-      console.log("Failed to search books. Please try again.");
+      throw "Failed to search books. Please try again.";
     }
   };
   useEffect(() => {

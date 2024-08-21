@@ -37,11 +37,6 @@ export const NewBook: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log("Home Component - isAuthenticated:", isAuthenticated);
-    console.log("Home Component - User:", user);
-  }, [isAuthenticated, user]);
-
-  useEffect(() => {
     if (isAuthenticated && user) {
       setNameUser(user.name || "");
     }
@@ -54,10 +49,8 @@ export const NewBook: React.FC = () => {
     formData.append("upload_preset", UPLOAD_PRESET);
     try {
       const response = await axios.post(CLOUDINARY_URL, formData);
-      console.log("Image upload response:", response.data);
       return response.data.secure_url;
     } catch (error) {
-      console.error("Error uploading image:", error);
       setError("Failed to upload image.");
       return "";
     }
@@ -90,10 +83,8 @@ export const NewBook: React.FC = () => {
         nameUser,
       });
       console.log(response);
-      console.log("Selected genres:", selectedGenres);
     } catch (err) {
       setError("Failed to create book.");
-      console.log(err);
     } finally {
       setIsLoading(false);
     }
@@ -105,7 +96,6 @@ export const NewBook: React.FC = () => {
         const response = await getGenre();
         setGenres(response);
       } catch (error) {
-        console.log("Error fetching genres:", error);
         console.error("Error fetching genres:", error);
       }
     };
