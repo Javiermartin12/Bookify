@@ -26,6 +26,7 @@
   "dependencies": {
     "config": "^3.3.12",
     "cors": "^2.8.5",
+    "depcheck": "^1.4.7",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-oauth2-jwt-bearer": "^1.6.0",
