@@ -70,11 +70,11 @@ VITE_UPLOAD_PRESET=tu-upload-preset
 4. **Run the Application:**
 
 - **Frontend:**
-  cd frontend
+  cd frontend:
   npm run dev
 
 - **Backend:**
-  cd backend
+  cd backend:
   npm run dev
 
 ## Use
